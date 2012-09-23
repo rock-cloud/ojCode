@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1332226916 source:/home/rock/Dropbox/Private/code/poj/1011(1)/main.cpp
+	<iostream>
+	<algorithm>
+	<functional>
+	<stdio.h>
+	<string.h>
+
+1332226916 source:/home/rock/Dropbox/Private/code/poj/10111/main.cpp
+	<iostream>
+	<algorithm>
+	<functional>
+	<stdio.h>
+	<string.h>
+

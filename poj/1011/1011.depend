@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1332226893 source:/home/rock/Dropbox/Private/code/poj/1011/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
