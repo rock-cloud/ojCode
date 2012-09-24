@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <script type="text/javascript" src="jquery.js"></script>
+        <script type="text/javascript">
+            var data = new Array();
+            var Cl = new Array('open','close','hover');
+            for ( var i = 0; i < 4; i++) {
+                data[i] = new Array();
+                for ( var j = 0; j < 4; j++ ){
+                    data[i][j] = 0;
+                }
+            }
+            $(function(){
+                /*$('#main td').bind('mouseenter', function(e){
+                    var target = $(e.target);
+                    var ii = target.attr('i');
+                    var jj = target.attr('j');
+                    for ( var i = 0; i < 4; i++ ) {
+                        $("#main td[i='"+i+"'][j='"+jj+"']").removeClass('open');
+                        $("#main td[i='"+i+"'][j='"+jj+"']").removeClass('close');
+                        $("#main td[i='"+i+"'][j='"+jj+"']").addClass('hover');
+                    }
+                    for ( var j = 0; j < 4; j++ ) {
+                        $("#main td[i='"+ii+"'][j='"+j+"']").removeClass('open');
+                        $("#main td[i='"+ii+"'][j='"+j+"']").removeClass('close');
+                        $("#main td[i='"+ii+"'][j='"+j+"']").addClass('hover');
+                    }
+                    target.one('mouseleave', function(e){
+                        var tar = $(e.target);
+                        var ii = target.attr('i');
+                        var jj = target.attr('j');
+                        for ( var i = 0; i < 4; i++ ) {
+                            $("#main td[i='"+i+"'][j='"+jj+"']").removeClass('open');
+                            $("#main td[i='"+i+"'][j='"+jj+"']").removeClass('close');
+                            $("#main td[i='"+i+"'][j='"+jj+"']").removeClass('hover');
+                            $("#main td[i='"+i+"'][j='"+jj+"']").addClass(Cl[data[i][jj]]);
+                        }
+                        for ( var j = 0; j < 4; j++ ) {
+                            $("#main td[i='"+ii+"'][j='"+j+"']").removeClass('open');
+                            $("#main td[i='"+ii+"'][j='"+j+"']").removeClass('close');
+                            $("#main td[i='"+ii+"'][j='"+j+"']").removeClass('hover');
+                            $("#main td[i='"+ii+"'][j='"+j+"']").addClass(Cl[data[ii][j]]);
+                        }
+                    });
+                });*/
+                $('#main td').bind('mouseup', function(e){
+                    var target = $(e.target);
+                    var ii = target.attr('i');
+                    var jj = target.attr('j');
+                    for ( var i = 0; i < 4; i++ ) {
+                        $("#main td[i='"+i+"'][j='"+jj+"']").removeClass('open');
+                        $("#main td[i='"+i+"'][j='"+jj+"']").removeClass('close');
+                        $("#main td[i='"+i+"'][j='"+jj+"']").removeClass('hover');
+                        $("#main td[i='"+i+"'][j='"+jj+"']").addClass(Cl[1-data[i][jj]]);
+                        data[i][jj] = 1-data[i][jj];
+                    }
+                    for ( var j = 0; j < 4; j++ ) {
+                        if ( j == jj ) {
+                            continue;
+                        }
+                        $("#main td[i='"+ii+"'][j='"+j+"']").removeClass('open');
+                        $("#main td[i='"+ii+"'][j='"+j+"']").removeClass('close');
+                        $("#main td[i='"+ii+"'][j='"+j+"']").removeClass('hover');
+                        $("#main td[i='"+ii+"'][j='"+j+"']").addClass(Cl[1-data[ii][j]]);
+                        data[ii][j] = 1-data[ii][j];
+                    }
+                });
+                $('#set td').bind('click', function(e){
+                    var target = $(e.target);
+                    var ii = target.attr('i');
+                    var jj = target.attr('j');
+                    data[ii][jj] = 1-data[ii][jj];
+                    target.removeClass('open');
+                    target.removeClass('close');
+                    target.removeClass('close');
+                    target.addClass(Cl[data[ii][jj]]);
+                    target = $("#main td[i='"+ii+"'][j='"+jj+"']");
+                    target.removeClass('open');
+                    target.removeClass('close');
+                    target.removeClass('close');
+                    target.addClass(Cl[data[ii][jj]]);
+                });
+            });
+        </script>
+        <style>
+            .open {
+                background: #a0a000;
+            }
+            .close {
+                background: #0000a0;
+            }
+            .hover {
+                background: #aaaaaa;
+            }
+            td {
+                width: 60px;
+                height: 60px;
+            }
+        </style>
+    </head>
+    <body>
+        <table id='main'>
+            <tr>
+                <td i='0' j='0' class='open'></td>
+                <td i='0' j='1' class='open'></td>
+                <td i='0' j='2' class='open'></td>
+                <td i='0' j='3' class='open'></td>
+            </tr>
+            <tr>
+                <td i='1' j='0' class='open'></td>
+                <td i='1' j='1' class='open'></td>
+                <td i='1' j='2' class='open'></td>
+                <td i='1' j='3' class='open'></td>
+            </tr>
+            <tr>
+                <td i='2' j='0' class='open'></td>
+                <td i='2' j='1' class='open'></td>
+                <td i='2' j='2' class='open'></td>
+                <td i='2' j='3' class='open'></td>
+            </tr>
+            <tr>
+                <td i='3' j='0' class='open'></td>
+                <td i='3' j='1' class='open'></td>
+                <td i='3' j='2' class='open'></td>
+                <td i='3' j='3' class='open'></td>
+            </tr>
+        </table>
+        <table id='set'>
+            <tr>
+                <td i='0' j='0' class='open'></td>
+                <td i='0' j='1' class='open'></td>
+                <td i='0' j='2' class='open'></td>
+                <td i='0' j='3' class='open'></td>
+            </tr>
+            <tr>
+                <td i='1' j='0' class='open'></td>
+                <td i='1' j='1' class='open'></td>
+                <td i='1' j='2' class='open'></td>
+                <td i='1' j='3' class='open'></td>
+            </tr>
+            <tr>
+                <td i='2' j='0' class='open'></td>
+                <td i='2' j='1' class='open'></td>
+                <td i='2' j='2' class='open'></td>
+                <td i='2' j='3' class='open'></td>
+            </tr>
+            <tr>
+                <td i='3' j='0' class='open'></td>
+                <td i='3' j='1' class='open'></td>
+                <td i='3' j='2' class='open'></td>
+                <td i='3' j='3' class='open'></td>
+            </tr>
+        </table>
+    </body>
+</html>
